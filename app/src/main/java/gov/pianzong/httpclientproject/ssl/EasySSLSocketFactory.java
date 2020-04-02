@@ -83,16 +83,6 @@ public class EasySSLSocketFactory implements SocketFactory, LayeredSocketFactory
 
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init(trustStore);
-
-
-//            KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-//            kmf.init(keyStore, KEY_STORE_PASSWORD.toCharArray());
-//
-//            final X509KeyManager origKm = (X509KeyManager) kmf.getKeyManagers()[0];
-//            X509KeyManager km = new MyKeyManager(origKm);
-//
-//            SSLContext sslCtx = SSLContext.getInstance("TLS");
-//            sslCtx.init(new KeyManager[]{km}, tmf.getTrustManagers(), null);
 //            context.init(keyManagerFactory.getKeyManagers(), new TrustManager[]{new EasyX509TrustManager(trustStore)}, new SecureRandom());
             context.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), new SecureRandom());
             return context;

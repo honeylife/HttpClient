@@ -37,7 +37,7 @@ public class SSLSocketFactoryCompat extends SSLSocketFactory {
 
     //当前证书对应的密码，勿修改！
     private static final String KEY_STORE_PASSWORD = "donews123";
-    private static final String KEY_STORE_TRUST_PASSWORD = "donews123";
+    private static final String KEY_STORE_TRUST_PASSWORD = "123456";
     private SSLSocketFactory defaultFactory;
     // Android 5.0+ (API level21) provides reasonable default settings
     // but it still allows SSLv3

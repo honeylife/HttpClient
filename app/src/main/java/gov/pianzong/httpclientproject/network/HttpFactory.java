@@ -288,30 +288,9 @@ public class HttpFactory {
 
         final SocketFactory sf = PlainSocketFactory.getSocketFactory();
 
-//        SSLSocketFactory sslSocketFactory = getSslSocketFactory();
-
-//        sslSocketFactory.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
 
         EasySSLSocketFactory easySSLSocketFactory = new EasySSLSocketFactory();
         easySSLSocketFactory.setHostnameVerifier(new MyHom());
-
-
-//        SSLContext sslcontext = null;
-//        javax.net.ssl.SSLSocketFactory NoSSLv3Factory = null;
-//        try {
-//            sslcontext = SSLContext.getInstance("TLSv1");
-//            sslcontext.init(null, null, null);
-//            NoSSLv3Factory = new NoSSLv3SocketFactory(sslcontext.getSocketFactory());
-//            HttpsURLConnection.setDefaultSSLSocketFactory(NoSSLv3Factory);
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        } catch (KeyManagementException e) {
-//            e.printStackTrace();
-//        }
-//        l_connection = (HttpsURLConnection) l_url.openConnection();
-//        l_connection.connect();
-
-//        RegistryBuilder
 
         supportedSchemes.register(new Scheme("https", easySSLSocketFactory, 443));
         supportedSchemes.register(new Scheme("http", sf, 80));

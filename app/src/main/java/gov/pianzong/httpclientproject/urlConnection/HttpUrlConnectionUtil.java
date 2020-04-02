@@ -33,12 +33,11 @@ public class HttpUrlConnectionUtil {
 
 
     private static final String KEY_STORE_TYPE_BKS = "bks";//android
-    private static final String KEY_STORE_PASSWORD = "donews123";
+//    private static final String KEY_STORE_PASSWORD = "donews123";
 
-    //当前证书对应的密码，勿修改！
-//    private static final String KEY_STORE_PASSWORD = "123456";
-//    private static final String KEY_STORE_TRUST_PASSWORD = "123456";
-    private static final String KEY_STORE_TRUST_PASSWORD = "donews123";
+    //当前证书对应的密码，勿修改！ 密码写自己公司的即可
+    private static final String KEY_STORE_PASSWORD = "123456";
+    private static final String KEY_STORE_TRUST_PASSWORD = "123456";
     public String get(String path) {
 
         URL url = null;
