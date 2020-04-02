@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+
+
+    signingConfigs {
+        config {
+            keyAlias 'android'
+            keyPassword '123456'
+            storeFile file('android.keystore')
+            storePassword '123456'
+            v2SigningEnabled true
+            v1SigningEnabled true
+
+        }
+    }
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        applicationId "gov.pianzong.httpclientproject"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        flavorDimensions "versionCode"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+//
+                variant.outputs.all {
+                    def fileName = "app_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
+                    outputFileName = fileName
+                }
+            }
+            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+        }
+
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    useLibrary 'org.apache.http.legacy'
+
+    productFlavors {
+        _official
+//        _dev
+    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-compat:28.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+//    implementation group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.5.12'
+    //noinspection DuplicatePlatformClasses
+//    implementation group: 'org.apache.httpcomponents' , name: 'httpclient', version: '4.5.12'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.android.support:multidex:1.0.1'
+}
